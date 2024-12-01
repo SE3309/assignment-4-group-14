@@ -4,8 +4,13 @@ var mysql = require('mysql2');
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
+<<<<<<< Updated upstream
   password: "IWillFollowYouIntoTheDark!",
   database: "assignment3"
+=======
+  password: "",
+  database: "recipe_app"
+>>>>>>> Stashed changes
 });
 
 con.connect(function(err) {
@@ -35,7 +40,6 @@ app.use((req,res,next) => {//for all routes
 //routes
 router.post('/create-ingredient', (req,res) => {
     const { ingredientID, foodGroup, name } = req.body;
-    console.log(req.body);
 
     if (!ingredientID || !foodGroup || !name) {
         if (!ingredientID) console.log('no id');
@@ -51,13 +55,42 @@ router.post('/create-ingredient', (req,res) => {
             console.error('Error executing query:', err);
             return res.status(500).json({ error: 'Database query error' });
         }
-        console.log('ingredient inserted:,' );
+        console.log('ingredient inserted:,', ingredientID );
         res.status(201).json({ message: 'Ingredient created successfully', data: { ingredientID, foodGroup, name } });
     });
 
 });
+router.get('/get-highest-rated-users/:recipeName', (req,res) => {
+    console.log('request received');
+    let recipeName = req.params.recipeName;
+    
+    const query = `
+        SELECT username 
+        FROM ratings rt 
+        WHERE rt.recipeID = (
+            SELECT recipeID 
+            FROM recipes 
+            WHERE name = ?
+        )
+        AND rating = 5
+    `;
+    con.query(query, [recipeName], (err, result) => {
+        console.log('query');
+        if (err) {
+            console.error('Error executing query:', err);
+            return res.status(500).json({ error: 'Database query error' });
+        }
+        console.log('Query executed successfully:', result);
+        res.status(200).json(result);
+    });
+});
+
+
+
 app.use('/api', router);
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
 });
+
+
 module.exports = router;
