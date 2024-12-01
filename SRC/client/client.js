@@ -237,6 +237,27 @@ function getRecipesByTag() {
 function getRecipesByIngredient() {
     const selectedIngredient = document.getElementById("ingredientSelect").value;
 
+    console.log(selectedIngredient);
+
+    fetch(`/api/create-ingredient/${selectedIngredient}`, {
+        method: 'GET',
+        headers: {'Content-type': 'application/json'}
+    })
+    .then(res => {
+        if (res.ok) {
+            res.json()
+            .then(data => {
+                console.log(data);
+            })       //Calling to display all of the lists
+            .catch(err => console.log('Failed to get json object'))
+        }
+        else {
+            console.log('Error: ', res.status)
+        }        
+    })
+    .catch();
+
+    
     const filteredRecipes = recipes.filter(recipe => { 
         const ingredientsForRecipe = ingredients.filter(ingredient => ingredient.recipeID === recipe.recipeID); // Find ingredients for each recipe
         const hasIngredient = ingredientsForRecipe.some(ingredient => ingredient.ingredient === selectedIngredient); // Check if the recipe contains that ingredient
