@@ -4,13 +4,8 @@ var mysql = require('mysql2');
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
-<<<<<<< Updated upstream
-  password: "IWillFollowYouIntoTheDark!",
-  database: "assignment3"
-=======
   password: "",
   database: "recipe_app"
->>>>>>> Stashed changes
 });
 
 con.connect(function(err) {
