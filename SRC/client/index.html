@@ -52,13 +52,40 @@
 
   <h2>Delete All Recipes By Author</h2>
 
-  <p id="ingredientMessage"></p>
+  <p id="authorMessage"></p>
 
   <input type="text" id="authorName" placeholder="Author">     <!-- Search box -->
 
   <button onclick="addNewIngredient()">Add New Ingredient</button>
-
+<br>
   
+
+
+<!-- Input to select ingredient -->
+<label for="ingredientSelect">Choose an ingredient:</label>
+<select id="ingredientSelect" onchange="getRecipesByIngredient()">
+    <option value="Garlic">Garlic</option>
+    <option value="Chicken">Chicken</option>
+    <option value="Tomato">Tomato</option>
+</select>
+
+<!-- Button to trigger the getRecipesByTag function -->
+<button onclick="getRecipesByTag()">Show Recipes by Tag</button>
+
+<!-- Section to display the results for recipes -->
+<div id="getRecipes" style="display:none;">
+    <h3 id="recipeHeading"></h3>
+    <ul id="recipeResults"></ul>
+</div>
+
+
+
+
+
+
+
+
+
   </body>
 </html>
 
