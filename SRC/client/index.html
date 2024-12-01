@@ -11,8 +11,12 @@
   <body>
   <h1>3309 App</h1>
 
+
+
   <h2>Get all Users</h2>
-  <button class="getUserBtn" onclick = "displayUsers()">Get Users</button>      <!-- Change the onclick to getUsers() -->
+
+
+  <button class="getUserBtn" onclick = "getUsers()">Get Users</button>      <!-- Change the onclick to getUsers() -->
 
   <div id="getUsers">
     <div class="getUserResults">
@@ -23,8 +27,9 @@
   </div>
 
 
-  <h2>Find Users Who Gave Recipe Highest Score</h2>
 
+
+  <h2>Find Users Who Gave Recipe Highest Score</h2>
 
   <input type="text" id="highestRecipeName" placeholder="Recipe Name">     <!-- Search box -->
 
@@ -50,6 +55,8 @@
   <button onclick="addNewIngredient()">Add New Ingredient</button>
 
 
+
+
   <h2>Delete All Recipes By Author</h2>
 
   <p id="authorMessage"></p>
@@ -60,8 +67,12 @@
   <br>
   
 
+
+
   <h2>Get all recipes with Tag</h2>
+
   <!-- Input to select ingredient -->
+
   <label for="ingredientSelect">Choose an ingredient:</label>
   <select id="ingredientSelect" onchange="getRecipesByIngredient()">
     <option value="Garlic">Garlic</option>
@@ -69,20 +80,14 @@
     <option value="Tomato">Tomato</option>
   </select>
 
+  <!-- Button to trigger the getRecipesByTag function -->
+  <button onclick="getRecipesByTag()">Show Recipes by Tag</button>
 
-
-<!-- Button to trigger the getRecipesByTag function -->
-<button onclick="getRecipesByTag()">Show Recipes by Tag</button>
-
-<!-- Section to display the results for recipes -->
-<div id="getRecipes" style="display:none;">
-    <h3 id="recipeHeading"></h3>
-    <ul id="recipeResults"></ul>
-</div>
-
-
-
-
+  <!-- Section to display the results for recipes -->
+  <div id="getRecipes" style="display:none;">
+      <h3 id="recipeHeading"></h3>
+      <ul id="recipeResults"></ul>
+  </div>
 
 
 

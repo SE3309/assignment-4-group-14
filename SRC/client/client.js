@@ -7,7 +7,10 @@ function getUsers(){
     .then(res => {
         if (res.ok) {
             res.json()
-            .then(data => displayUsers(data))       //Calling to display all of the lists
+            .then(data => {
+                console.log(data);
+                displayUsers(data);
+            })       //Calling to display all of the lists
             .catch(err => console.log('Failed to get json object'))
         }
         else {
@@ -22,13 +25,6 @@ var showSearchResults = [];
 function displayUsers(users){
 
     showSearchResults = [];
-
-
-    users = [                                                   //remove this later
-        {username: 'John', password: 'Highway 71'},
-        {username: 'Peter', password: 'Lowstreet 4'},
-        {username: 'Amy', password: 'Apple st 652'},
-        {username: 'Hannah', password: 'Mountain 21'}];
 
     x = document.getElementById('getUsers');      //Showing the div area
     x.style.display = 'block';
@@ -117,6 +113,11 @@ function validateSearch(search){
     return true;        //This means that the search result is only letters and is shorter than 21 characters
 }
 
+
+
+
+//This section is complete
+
 function searchHighestRatings(){
     var inputtedRecipe = document.getElementById('highestRecipeName').value;
 
@@ -125,14 +126,10 @@ function searchHighestRatings(){
         return;
     }
 
-    newpart = {
-        recipeName: inputtedRecipe
-    }
 
-    /*fetch('/api/create-ingredient', {
-        method: 'POST',
-        headers: {'Content-type': 'application/json'},
-        body: JSON.stringify(newpart)
+    fetch(`/api/get-highest-rated-users/${inputtedRecipe}`, {
+        method: 'GET',
+        headers: {'Content-type': 'application/json'}
     })
     .then(res => {
         if (res.ok) {
@@ -146,19 +143,11 @@ function searchHighestRatings(){
             console.log('Error: ', res.status)
         }        
     })
-    .catch();*/
-
-    displayRatingUsers('');
+    .catch();
 }
 
 function displayRatingUsers(users){
     showSearchResults = [];
-
-    users = [                                                   //remove this later
-        {username: 'John'},
-        {username: 'Peter'},
-        {username: 'Amy'},
-        {username: 'Hannah'}];
 
     x = document.getElementById('getUsersRating');      //Showing the div area
     x.style.display = 'block';
@@ -179,6 +168,11 @@ function displayRatingUsers(users){
         resultArea.appendChild(showSearchResults[i]);
     }
 }
+
+
+
+
+
 
 
 function deleteRecipesByAuthor(){
@@ -239,7 +233,7 @@ function getRecipesByIngredient() {
 
     console.log(selectedIngredient);
 
-    fetch(`/api/create-ingredient/${selectedIngredient}`, {
+    fetch(`/api/getRecipesByTag/${selectedIngredient}`, {
         method: 'GET',
         headers: {'Content-type': 'application/json'}
     })

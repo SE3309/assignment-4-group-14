@@ -4,8 +4,8 @@ var mysql = require('mysql2');
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "",
-  database: "recipe_app"
+  password: "IWillFollowYouIntoTheDark!",
+  database: "assignment3"
 });
 
 con.connect(function(err) {
@@ -55,6 +55,7 @@ router.post('/create-ingredient', (req,res) => {
     });
 
 });
+
 router.get('/get-highest-rated-users/:recipeName', (req,res) => {
     console.log('request received');
     let recipeName = req.params.recipeName;
@@ -77,6 +78,24 @@ router.get('/get-highest-rated-users/:recipeName', (req,res) => {
         }
         console.log('Query executed successfully:', result);
         res.status(200).json(result);
+    });
+});
+
+
+router.get('/getUsers', (req, res) => {
+    console.log('inside');
+
+
+    const query = 'SELECT username FROM user';
+
+    con.query(query, (error, results) => {
+        if (error) {
+            console.error('Failed to fetch users from database:', error);
+            res.status(500).json({ error: 'Failed to fetch users' });
+        } else {
+            console.log(results);
+            res.status(200).json(results);
+        }
     });
 });
 
