@@ -95,6 +95,33 @@ app.get('/api/getRecipesByIngredientNameAndUserRange/:ingredientName/:startUser/
 });
 
 
+//API endpoint to delete all recipes by a speicifed author
+//This endpoint would be used for if an author deletes their account as an example
+//input would be username and would delete all recipes by the user that username refers to
+
+app.delete('/api/deleteRecipesByUser/:username', (req, res) => {
+    const { username } = req.params;
+
+    // Query to delete all recipes based on the given username
+    const query = `
+        DELETE FROM recipes
+        WHERE recipeID IN (
+            SELECT recipeID FROM author WHERE username = ?
+        );
+    `;
+
+    con.query(query, [username], (error, results) => {
+        if (error) {
+            console.error('Failed to delete recipes by user:', error);
+            res.status(500).json({ error: 'Failed to delete recipes by user' });
+        } else if (results.affectedRows === 0) {
+            res.status(404).json({ message: `No recipes found by user: ${username}` });
+        } else {
+            res.status(200).json({ message: `Sucess, deleted all recipes by user: ${username}` });
+        }
+    });
+});
+
 
 // Starting the server on port 3000,
 app.listen(port, () => {
