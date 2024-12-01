@@ -59,11 +59,68 @@ function hideUserResults(){
     x.innerHTML= '';
 }
 
+function addNewIngredient(){
+    let ele = document.getElementById('ingredientMessage');
+    ele.innerText = "" ;
+    
+    var foodGroup = document.getElementById('foodGroup').value;
+    var ingredientName = document.getElementById('ingredientName').value;
 
-function hideRecipeRatingsResults(){
-    x = document.getElementById('getUsersHighestRecipes');      //Showing the div area
-    x.style.display = 'none';
+    let goodSearch = validateSearch(foodGroup);
+    if (goodSearch == false){
+        return
+    }
 
-    x = document.getElementById(userResults);
-    x.innerHTML= '';
+    goodSearch = validateSearch(ingredientName);
+    if (goodSearch == false){
+        return
+    }
+
+    let id = Math.floor(Math.random() * 10000000000);
+
+    newpart = {
+        foodGroup: foodGroup,
+        name: ingredientName,
+        id: id
+    }
+
+    fetch('/api/create-ingredient', {
+        method: 'POST',
+        headers: {'Content-type': 'application/json'},
+        body: JSON.stringify(newpart)
+    })
+    .then(res => {
+        if (res.ok) {
+            res.json()
+            .then(data => {
+                let ele = document.getElementById('ingredientMessage');
+                ele.innerText = "Ingredient sucessfully created" ;
+            })       //Calling to display all of the lists
+            .catch(err => console.log('Failed to get json object'))
+        }
+        else {
+            console.log('Error: ', res.status)
+        }        
+    })
+    .catch();
+}
+
+function validateSearch(search){
+    if ( search.length > 29){       //If the text string is longer than 20 characters
+        alert("ERROR: keep search result less than 20 character");
+        return false;                     //Exit function
+    }
+    if ( search.length == 0){       //If the text string is longer than 20 characters
+        alert("ERROR: input a search");
+        return false;                     //Exit function
+    }
+    if (/\d/.test(search)){        //If the text string contains a number
+        alert("ERROR: no numbers in search result");
+        return false;                     //Exit function
+    }
+    if (/[!-\/:-@[-`{-~]/.test(search)){        //If the text contains special characters 
+        alert("ERROR: no special characters in search result");
+        return false;
+    }
+    return true;        //This means that the search result is only letters and is shorter than 21 characters
 }

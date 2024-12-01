@@ -10,7 +10,6 @@ WHERE (r.name == "example")                          #Add way to
 
 #Take the above and put into the the next thing
 
-
 SELECT username FROM ratings rt					#Find all users who gave a recipe highest rating
 WHERE (rt.recipeID = 'example') AND (rating = 5);
 
