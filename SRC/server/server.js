@@ -43,16 +43,16 @@ app.get('/api/getUsers', (req, res) => {
     });
 });
 
-//Defining getRecipesByTag api endpoint 
-//Finds all recipes with a given tag
-//Will return the recipe ID 
+// Defining getRecipesByTag API endpoint 
+// Finds all recipes with a given tag
+// Will return the recipe name
 app.get('/api/getRecipesByTag/:tag', (req, res) => {
     const { tag } = req.params;
     const query = `
-        SELECT a.recipeID
-        FROM recipeTags rt 
-        JOIN author a 
-        ON a.recipeID = rt.recipeID
+        SELECT r.name AS recipeName
+        FROM recipeTags rt
+        JOIN author a ON a.recipeID = rt.recipeID
+        JOIN recipes r ON r.recipeID = a.recipeID
         WHERE ? IN (rt.tag1, rt.tag2, rt.tag3, rt.tag4, rt.tag5);
     `;
 
@@ -65,6 +65,7 @@ app.get('/api/getRecipesByTag/:tag', (req, res) => {
         }
     });
 });
+
 
 //API endpoint for getting recipes by ingredient's name and user range
 //THIS IS UPDATED QUERY THE ORIGINAL ONE WAS INCORRECT
