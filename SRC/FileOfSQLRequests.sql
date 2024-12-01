@@ -30,4 +30,4 @@ WHERE (u.username = 'input' AND search = "input");
 SELECT a.recipeID							#Returns all recipes with an ingredients from a range of users
 FROM recipeIngredients ri JOIN author a
 WHERE (ri.ingredientId) AND 
-(a.recipeID = ri.recipeID AND 'user_10' > a.username > 'user_20');		#
+(a.recipeID = ri.recipeID AND 'user_10' > a.username > 'user_20');

@@ -23,13 +23,29 @@
   </div>
 
 
+  <h2>Find users who gave recipe highest score</h2>
+
+
+  <input type="text" id="highestRecipeName" placeholder="Recipe Name">     <!-- Search box -->
+
+  <button onclick="searchHighestRatings()">Search Rating</button>
+
+  <div id="getUsersRating">
+    <div class="getUserRatingsResults">
+        <button onclick="hideUserRatingResults()">Hide</button>
+        <ul id="userRatingResults">
+        </ul>
+    </div>
+  </div>
+
+
 
   <h2>Insert Ingredient</h2>
 
   <p id="ingredientMessage"></p>
 
   <input type="text" id="foodGroup" placeholder="Food Group">     <!-- Search box -->
-  <input type="text" id="ingredientName" placeholder="Food Group">     <!-- Search box -->
+  <input type="text" id="ingredientName" placeholder="Ingredient Name">     <!-- Search box -->
 
   <button onclick="addNewIngredient()">Add New Ingredient</button>
 
