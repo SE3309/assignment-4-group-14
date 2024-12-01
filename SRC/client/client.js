@@ -1,4 +1,6 @@
 
+//This section is complete
+
 function getUsers(){
     fetch('/api/getUsers', {
         method: 'GET',
@@ -54,6 +56,11 @@ function hideUserResults(){
     x = document.getElementById("userResults");
     x.innerHTML= '';
 }
+
+
+
+
+
 
 function addNewIngredient(){
     let ele = document.getElementById('ingredientMessage');
@@ -233,7 +240,7 @@ function getRecipesByIngredient() {
 
     console.log(selectedIngredient);
 
-    fetch(`/api/getRecipesByTag/${selectedIngredient}`, {
+    fetch(`/api/getRecipesByIngredientNameAndUserRange/${selectedIngredient}/${startUser}/${endUser}`, {
         method: 'GET',
         headers: {'Content-type': 'application/json'}
     })
