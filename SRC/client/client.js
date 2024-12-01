@@ -11,7 +11,7 @@ function getUsers(){
             .catch(err => console.log('Failed to get json object'))
         }
         else {
-            console.log('Error: ',res.status)
+            console.log('Error: ', res.status)
         }        
     })
     .catch();
@@ -53,6 +53,15 @@ function displayUsers(users){
 
 function hideUserResults(){
     x = document.getElementById('getUsers');      //Showing the div area
+    x.style.display = 'none';
+
+    x = document.getElementById("userResults");
+    x.innerHTML= '';
+}
+
+
+function hideRecipeRatingsResults(){
+    x = document.getElementById('getUsersHighestRecipes');      //Showing the div area
     x.style.display = 'none';
 
     x = document.getElementById(userResults);

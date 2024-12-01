@@ -11,8 +11,8 @@
   <body>
   <h1>3309 App</h1>
 
-
-  <button class="getUserBtn" onclick = "displayUsers()">Get Users</button>
+  <h2>Get all Users</h2>
+  <button class="getUserBtn" onclick = "displayUsers()">Get Users</button>      <!-- Change the onclick to getUsers() -->
 
   <div id="getUsers">
     <div class="getUserResults">
@@ -22,7 +22,21 @@
     </div>
   </div>
 
-  
+
+
+  <h2>Find Recipies highest scorers</h2>
+
+  <input type="text" id="newListName" placeholder="Recipe name">     <!-- Search box -->
+
+
+  <div id="getUsersHighestRecipes">
+    <div class="getUserRatingResults">
+        <button onclick="hideRecipeRatingsResults()" class="">Hide</button>
+        <ul id="userRatingResults">
+        </ul>
+    </div>
+  </div>
+
   
   </body>
 </html>

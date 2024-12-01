@@ -4,6 +4,13 @@ WHERE ('example' IN (rt.tag1, rt.tag2, rt.tag3, rt.tag4, rt.tag5)) AND
 (a.recipeID = rt.recipeID);
 
 
+
+SELECT recipeID r FROM recipes
+WHERE (r.name == "example")                          #Add way to 
+
+#Take the above and put into the the next thing
+
+
 SELECT username FROM ratings rt					#Find all users who gave a recipe highest rating
 WHERE (rt.recipeID = 'example') AND (rating = 5);
 
