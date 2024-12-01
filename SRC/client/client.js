@@ -260,7 +260,7 @@ function getRecipesByIngredient() {
         if (res.ok) {
             res.json()
             .then(data => {
-                console.log(data);
+                displayRecipes(data, selectedIngredient, 'ingredient');
             })       //Calling to display all of the lists
             .catch(err => console.log('Failed to get json object'))
         }
@@ -271,7 +271,7 @@ function getRecipesByIngredient() {
     .catch();
 
     
-    const filteredRecipes = recipes.filter(recipe => { 
+    /*const filteredRecipes = recipes.filter(recipe => { 
         const ingredientsForRecipe = ingredients.filter(ingredient => ingredient.recipeID === recipe.recipeID); // Find ingredients for each recipe
         const hasIngredient = ingredientsForRecipe.some(ingredient => ingredient.ingredient === selectedIngredient); // Check if the recipe contains that ingredient
 
@@ -282,9 +282,7 @@ function getRecipesByIngredient() {
         });
 
         return hasIngredient && isUserInRange;
-    });
-
-    displayRecipes(filteredRecipes, selectedIngredient, 'ingredient');
+    });*/
 }
 
 
