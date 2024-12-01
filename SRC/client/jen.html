@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="client.js"></script>
+    <title>SE 3309 - App</title>
+  </head>
+  
+  <body>
+  <h1>3309 App</h1>
+
+
+  <button class="getUserBtn" onclick = "displayUsers()">Get Users</button>
+
+  <div id="getUsers">
+    <div class="getUserResults">
+        <button onclick="hideUserResults()">Hide</button>
+        <ul id="userResults">
+        </ul>
+    </div>
+  </div>
+
+
+
+
+<button onclick="getRecipesByTag()">Show Recipes for Tag 1</button>
+
+<!-- Section to display the results for recipes -->
+<div id="getRecipes" style="display:none;">
+    <h3 id="tagName"></h3>
+    <ul id="recipeResults"></ul>
+</div>
+
+
+<script src="jen.js"></script>
+  
+  </body>
+</html>
