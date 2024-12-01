@@ -10,31 +10,26 @@
   
   <body>
   <h1>3309 App</h1>
+</head>
+<body>
 
+    <!-- Input to select ingredient -->
+    <label for="ingredientSelect">Choose an ingredient:</label>
+    <select id="ingredientSelect" onchange="getRecipesByIngredient()">
+        <option value="Garlic">Garlic</option>
+        <option value="Chicken">Chicken</option>
+        <option value="Tomato">Tomato</option>
+    </select>
 
-  <button class="getUserBtn" onclick = "displayUsers()">Get Users</button>
+    <!-- Button to trigger the getRecipesByTag function -->
+    <button onclick="getRecipesByTag()">Show Recipes by Tag</button>
 
-  <div id="getUsers">
-    <div class="getUserResults">
-        <button onclick="hideUserResults()">Hide</button>
-        <ul id="userResults">
-        </ul>
+    <!-- Section to display the results for recipes -->
+    <div id="getRecipes" style="display:none;">
+        <h3 id="recipeHeading"></h3>
+        <ul id="recipeResults"></ul>
     </div>
-  </div>
 
-
-
-
-<button onclick="getRecipesByTag()">Show Recipes for Tag 1</button>
-
-<!-- Section to display the results for recipes -->
-<div id="getRecipes" style="display:none;">
-    <h3 id="tagName"></h3>
-    <ul id="recipeResults"></ul>
-</div>
-
-
-<script src="jen.js"></script>
-  
-  </body>
+    <script src="jen.js"></script>
+</body>
 </html>
