@@ -77,11 +77,12 @@
   <input type="text" id="highestAuthor" placeholder="Highest Author">     <!-- Search box -->
 
   <label for="ingredientSelect">Choose an ingredient:</label>
-  <select id="ingredientSelect" onchange="getRecipesByIngredient()">
+  <select id="ingredientSelect">
     <option value="Garlic">Garlic</option>
     <option value="Chicken">Chicken</option>
     <option value="Tomato">Tomato</option>
   </select>
+  <button onclick="getRecipesByIngredient()">Get Recipes</button>
 
 
 

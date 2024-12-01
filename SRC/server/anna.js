@@ -4,7 +4,7 @@ var mysql = require('mysql2');
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "",
+  password: "IWillFollowYouIntoTheDark!",
   database: "assignment3"
 });
 
@@ -99,7 +99,7 @@ router.get('/getUsers', (req, res) => {
     });
 });
 
-router.get('/api/getRecipesByIngredientNameAndUserRange/:ingredientName/:startUser/:endUser', (req, res) => {
+router.get('/getRecipesByIngredientNameAndUserRange/:ingredientName/:startUser/:endUser', (req, res) => {
     const { ingredientName, startUser, endUser } = req.params;
 
     const query = `

@@ -238,9 +238,21 @@ function getRecipesByTag() {
 function getRecipesByIngredient() {
     const selectedIngredient = document.getElementById("ingredientSelect").value;
 
-    console.log(selectedIngredient);
+    var lowAuthor = document.getElementById('lowestAuthor').value;
+    var highAuthor = document.getElementById('highestAuthor').value;
 
-    fetch(`/api/getRecipesByIngredientNameAndUserRange/${selectedIngredient}/${startUser}/${endUser}`, {
+    let goodSearch = validateSearch(lowAuthor);
+    if (goodSearch == false){
+        return;
+    }
+
+    goodSearch = validateSearch(highAuthor);
+    if (goodSearch == false){
+        return;
+    }
+
+
+    fetch(`/api/getRecipesByIngredientNameAndUserRange/${selectedIngredient}/${lowAuthor}/${highAuthor}`, {
         method: 'GET',
         headers: {'Content-type': 'application/json'}
     })
