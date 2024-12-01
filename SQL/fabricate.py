@@ -118,9 +118,6 @@ def insert_authors(n): #insert authors
     except mysql.connector.Error as err:
         print(f"Error inserting authors: {err}")
 
-import random
-import mysql.connector
-
 def insert_recipeTags(n):
     print("Inserting recipeTags...")
     try:
