@@ -76,12 +76,12 @@ function addNewIngredient(){
         return
     }
 
-    let id = Math.floor(Math.random() * 10000000000);
+    let id = (Math.floor(Math.random() * 10000000000)).toString();
 
     newpart = {
         foodGroup: foodGroup,
         name: ingredientName,
-        id: id
+        ingredientID: id
     }
 
     fetch('/api/create-ingredient', {
