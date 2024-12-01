@@ -152,9 +152,7 @@ function searchHighestRatings(){
 }
 
 function displayRatingUsers(users){
-
     showSearchResults = [];
-
 
     users = [                                                   //remove this later
         {username: 'John'},
@@ -180,4 +178,19 @@ function displayRatingUsers(users){
     for (var i = 0; i< showSearchResults.length; i++){
         resultArea.appendChild(showSearchResults[i]);
     }
+}
+
+
+function deleteRecipesByAuthor(){
+    let ele = document.getElementById('authorMessage');
+    ele.innerText = "" ;
+    
+    var foodGroup = document.getElementById('foodGroup').value;
+    var ingredientName = document.getElementById('ingredientName').value;
+
+    let goodSearch = validateSearch(foodGroup);
+    if (goodSearch == false){
+        return
+    }
+
 }
