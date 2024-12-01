@@ -4,8 +4,8 @@ var mysql = require('mysql2');
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "IWillFollowYouIntoTheDark!",
-  database: "assignment3"
+  password: "monthdayyear1Y",
+  database: "recipe_app"
 });
 
 con.connect(function(err) {
@@ -57,7 +57,6 @@ router.post('/create-ingredient', (req,res) => {
 });
 
 router.get('/get-highest-rated-users/:recipeName', (req,res) => {
-    console.log('request received');
     let recipeName = req.params.recipeName;
     
     const query = `
@@ -76,7 +75,6 @@ router.get('/get-highest-rated-users/:recipeName', (req,res) => {
             console.error('Error executing query:', err);
             return res.status(500).json({ error: 'Database query error' });
         }
-        console.log('Query executed successfully:', result);
         res.status(200).json(result);
     });
 });
@@ -124,6 +122,21 @@ router.get('/getRecipesByIngredientNameAndUserRange/:ingredientName/:startUser/:
     });
 });
 
+router.get('/search-ingredients/:column/:input', (req, res) => {//where column is either name or foodGroup and input is the query string
+    const input = req.params.input;
+    const column = req.params.column;
+
+    const query = `SELECT * FROM ingredients WHERE ${column} LIKE '%${input}%'`
+
+    con.query(query, (err,results) => {
+        if (err) {
+            console.error('Error executing query: ', err);
+            return res.status(500).json({ error: 'Database query error' });
+        }
+        console.log('search query works');
+        res.status(200).json(results);
+    });
+});
 
 
 
