@@ -4,8 +4,8 @@ var mysql = require('mysql2');
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "IWillFollowYouIntoTheDark!",
-  database: "assignment3"
+  password: "",
+  database: ""
 });
 
 con.connect(function(err) {
@@ -101,10 +101,9 @@ router.get('/getRecipesByIngredientNameAndUserRange/:ingredientName/:startUser/:
     const { ingredientName, startUser, endUser } = req.params;
 
     const query = `
-        SELECT r.name AS recipeName
+        SELECT a.recipeID
         FROM recipeIngredients ri
         JOIN author a ON a.recipeID = ri.recipeID
-        JOIN recipes r ON r.recipeID = a.recipeID
         WHERE ri.ingredientID = (
             SELECT ingredientID 
             FROM ingredients 
@@ -139,30 +138,23 @@ router.get('/search-ingredients/:column/:input', (req, res) => {//where column i
     });
 });
 
+router.get('/search-tags/:tag', (req,res) => {
+    const tag = req.params.tag;
 
-router.delete('/deleteRecipesByUser/:username', (req, res) => {
-    const { username } = req.params;
+    const query = `SELECT * FROM tags WHERE name LIKE '%${tag}%'`;
 
-    // Query to delete all recipes based on the given username
-    const query = `
-        DELETE FROM recipes
-        WHERE recipeID IN (
-            SELECT recipeID FROM author WHERE username = ?
-        );
-    `;
-
-    con.query(query, [username], (error, results) => {
-        if (error) {
-            console.error('Failed to delete recipes by user:', error);
-            res.status(500).json({ error: 'Failed to delete recipes by user' });
-        } else if (results.affectedRows === 0) {
-            res.status(404).json({ message: `No recipes found by user: ${username}` });
-        } else {
-            res.status(200).json({ message: `Sucess, deleted all recipes by user: ${username}` });
+    con.query(query, (err,results) => {
+        if (err) {
+            console.error('Error executing query: ',err);
+            return res.status(500).json({ error: 'Database query error' });
         }
+        res.status(200).json(results);
     });
 });
 
+router.get('/search-recipes-by-tag/:tag', (req,res) => {
+
+});
 
 
 app.use('/api', router);
