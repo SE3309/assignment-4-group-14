@@ -85,3 +85,7 @@ button {
     color: #a0b484; 
     margin-bottom: 20px;
 }
+
+#getIngredientsBySearch{
+    display:none;
+}

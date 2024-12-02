@@ -232,6 +232,77 @@ function deleteRecipesByAuthor(){
 
 
 
+function getIngredientBySearch(){
+    var ingredientInput = document.getElementById('ingredientInput').value;
+
+    let goodSearch = validateSearch(authorName);
+    if (goodSearch == false){
+        return;
+    }
+
+    const selectedTag = document.getElementById("ingredientSelect").value;
+    goodSearch = validateSearch(selectedTag);
+    if (goodSearch == false){
+        return;
+    }
+
+    fetch(`/api/search-ingredients/${selectedTag}/${ingredientInput}`, {
+        method: 'GET',
+        headers: {'Content-type': 'application/json'}
+    })
+    .then(res => {
+        if (res.ok) {
+            res.json()
+            .then(data => {
+                console.log(data);
+
+                displayIngredient(data);
+
+                let ele = document.getElementById("authorMessage");
+
+                ele.innerText = data.message;
+            })       //Calling to display all of the lists
+            .catch(err => console.log('Failed to get json object'))
+        }
+        else {
+            console.log('Error: ', res.status)
+        }        
+    })
+    .catch();
+}
+
+function displayIngredient(ingredients){
+    const selectedTag = document.getElementById("ingredientSelect").InnerText;
+
+    showSearchResults = [];
+
+    x = document.getElementById('getIngredientsBySearch');      //Showing the div area
+    x.style.display = 'block';
+
+    var resultArea = document.getElementById("ingredientResults");       //Clearing out search results
+    resultArea.innerHTML = '';
+
+
+    for (var i= 0; i < users.length; i++){        //Ading all of the results to the current html
+        var listItem = document.createElement("li");
+
+        listItem.innerHTML = `<p>${ingredients[i].name} ${ingredients[i].foodGroup} </p>`;
+
+        showSearchResults.push(listItem);
+    }
+
+    for (var i = 0; i< showSearchResults.length; i++){
+        resultArea.appendChild(showSearchResults[i]);
+    }
+}
+
+function hideIngredientSearch(){
+    x = document.getElementById('getIngredientsBySearch');      //Showing the div area
+    x.style.display = 'none';
+
+    x = document.getElementById("ingredientResults");
+    x.innerHTML= '';
+}
 
 
 
@@ -263,8 +334,6 @@ function getRecipesByTag() {
         }        
     })
     .catch();
-
-    const tagID = 1; 
 }
 
 // Function to fetch recipes by ingredient
@@ -302,20 +371,6 @@ function getRecipesByIngredient() {
         }        
     })
     .catch();
-
-    
-    /*const filteredRecipes = recipes.filter(recipe => { 
-        const ingredientsForRecipe = ingredients.filter(ingredient => ingredient.recipeID === recipe.recipeID); // Find ingredients for each recipe
-        const hasIngredient = ingredientsForRecipe.some(ingredient => ingredient.ingredient === selectedIngredient); // Check if the recipe contains that ingredient
-
-        const authorsForRecipe = authors.filter(author => author.recipeID === recipe.recipeID);
-        const isUserInRange = authorsForRecipe.some(author => { // Find the authors that are in the 10 to 30 range
-            const userNum = parseInt(author.username.split('_')[1]);
-            return userNum >= 10 && userNum <= 30;
-        });
-
-        return hasIngredient && isUserInRange;
-    });*/
 }
 
 

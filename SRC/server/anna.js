@@ -143,6 +143,30 @@ router.get('/getRecipesByTag/:tag', (req, res) => {
 });
 
 
+router.delete('/deleteRecipesByUser/:username', (req, res) => {
+    const { username } = req.params;
+
+    // Query to delete all recipes based on the given username
+    const query = `
+        DELETE FROM recipes
+        WHERE recipeID IN (
+            SELECT recipeID FROM author WHERE username = ?
+        );
+    `;
+
+    con.query(query, [username], (error, results) => {
+        if (error) {
+            console.error('Failed to delete recipes by user:', error);
+            res.status(500).json({ error: 'Failed to delete recipes by user' });
+        } else if (results.affectedRows === 0) {
+            res.status(404).json({ message: `No recipes found by user: ${username}` });
+        } else {
+            res.status(200).json({ message: `Sucess, deleted all recipes by user: ${username}` });
+        }
+    });
+});
+
+
 
 router.get('/search-ingredients/:column/:input', (req, res) => {//where column is either name or foodGroup and input is the query string
     const input = req.params.input;

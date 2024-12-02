@@ -84,8 +84,26 @@
         <ul id="recipeResults"></ul>
       </div>
     </section>
-  </body>
 
+    <section id = "searchByNameOrFoodGroup">
+      <h2>Search Ingredients by Food Group or Name</h2>
+      <input type="text" id="ingredientInput" placeholder="Search"> <br><!-- Search box -->
+
+      <label for="ingredientSearchSelect">Choose an type:</label>
+      <select id="ingredientSearchSelect">
+        <option value="foodGroup">Food Group</option>
+        <option value="name">Name</option>
+      </select><br>
+
+      <button onclick="getIngredientBySearch()">Show Recipes</button>
+
+      <div id="getIngredientsBySearch">
+        <div class="getIngredientsBySearchResults">
+          <button onclick="hideIngredientSearch()">Hide</button>
+          <ul id="ingredientResults"></ul>
+        </div>
+      </div>
+    </section>
 
   </body>
 </html>
