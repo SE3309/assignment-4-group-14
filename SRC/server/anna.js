@@ -4,8 +4,8 @@ var mysql = require('mysql2');
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "",
-  database: ""
+  password: "IWillFollowYouIntoTheDark!",
+  database: "assignment3"
 });
 
 con.connect(function(err) {
@@ -122,6 +122,28 @@ router.get('/getRecipesByIngredientNameAndUserRange/:ingredientName/:startUser/:
     });
 });
 
+router.get('/getRecipesByTag/:tag', (req, res) => {
+    const { tag } = req.params;
+    const query = `
+        SELECT r.name AS recipeName
+        FROM recipeTags rt
+        JOIN author a ON a.recipeID = rt.recipeID
+        JOIN recipes r ON r.recipeID = a.recipeID
+        WHERE ? IN (rt.tag1, rt.tag2, rt.tag3, rt.tag4, rt.tag5);
+    `;
+
+    con.query(query, [tag], (error, results) => {
+        if (error) {
+            console.error('Failed to fetch recipes by tag:', error);
+            res.status(500).json({ error: 'Failed to fetch recipes by tag' });
+        } else {
+            res.status(200).json(results);
+        }
+    });
+});
+
+
+
 router.get('/search-ingredients/:column/:input', (req, res) => {//where column is either name or foodGroup and input is the query string
     const input = req.params.input;
     const column = req.params.column;
@@ -151,11 +173,6 @@ router.get('/search-tags/:tag', (req,res) => {
         res.status(200).json(results);
     });
 });
-
-router.get('/search-recipes-by-tag/:tag', (req,res) => {
-
-});
-
 
 app.use('/api', router);
 app.listen(port, () => {

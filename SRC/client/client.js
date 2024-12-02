@@ -60,8 +60,6 @@ function hideUserResults(){
 
 
 
-
-
 function addNewIngredient(){
     let ele = document.getElementById('ingredientMessage');
     ele.innerText = "" ;
@@ -242,9 +240,31 @@ function deleteRecipesByAuthor(){
 
 // Function to fetch recipes by tag
 function getRecipesByTag() {
-    const tagID = 1; 
+    const selectedTag = document.getElementById("ingredientSelect").value;
+    let goodSearch = validateSearch(selectedTag);
+    if (goodSearch == false){
+        return;
+    }
 
-    displayRecipes(recipes, tagID, 'tag');
+    fetch(`/api/getRecipesByTag/${selectedTag}`, {
+        method: 'GET',
+        headers: {'Content-type': 'application/json'}
+    })
+    .then(res => {
+        if (res.ok) {
+            res.json()
+            .then(data => {
+                displayRecipes(data, selectedTag, 'tag');
+            })       //Calling to display all of the lists
+            .catch(err => console.log('Failed to get json object'))
+        }
+        else {
+            console.log('Error: ', res.status)
+        }        
+    })
+    .catch();
+
+    const tagID = 1; 
 }
 
 // Function to fetch recipes by ingredient
