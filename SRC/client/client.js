@@ -197,7 +197,7 @@ function deleteRecipesByAuthor(){
         return;
     }
 
-    fetch(`/api/get-highest-rated-users/${authorName}`, {
+    fetch(`/api/deleteRecipesByUser/${authorName}`, {
         method: 'DELETE',
         headers: {'Content-type': 'application/json'}
     })
