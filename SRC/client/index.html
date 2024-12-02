@@ -9,105 +9,83 @@
   </head>
   
   <body>
-  <h1>3309 App</h1>
-
-
-
-  <h2>Get all Users</h2>
-
-
-  <button class="getUserBtn" onclick = "getUsers()">Get Users</button>      <!-- Change the onclick to getUsers() -->
-
-  <div id="getUsers">
-    <div class="getUserResults">
-        <button onclick="hideUserResults()">Hide</button>
-        <ul id="userResults">
-        </ul>
-    </div>
-  </div>
-
-
-
-
-  <h2>Find Users Who Gave Recipe Highest Score</h2>
-
-  <input type="text" id="highestRecipeName" placeholder="Recipe Name">     <!-- Search box -->
-
-  <button onclick="searchHighestRatings()">Search Rating</button>
-
-  <div id="getUsersRating">
-    <div class="getUserRatingsResults">
-        <button onclick="hideUserRatingResults()">Hide</button>
-        <ul id="userRatingResults">
-        </ul>
-    </div>
-  </div>
-
-
-
-  <h2>Insert Ingredient</h2>
-
-  <p id="ingredientMessage"></p>
-
-  <input type="text" id="foodGroup" placeholder="Food Group">     <!-- Search box -->
-  <input type="text" id="ingredientName" placeholder="Ingredient Name">     <!-- Search box -->
-
-  <button onclick="addNewIngredient()">Add New Ingredient</button>
-
-
-
-
-  <h2>Delete All Recipes By Author</h2>
-
-  <p id="authorMessage"></p>
-
-  <input type="text" id="authorName" placeholder="Author">     <!-- Search box -->
-
-  <button onclick="addNewIngredient()">Add New Ingredient</button>
-  <br>
+    <h1>3309 App</h1>
   
-
-
-
-  <h2>Get all Recipes with Ingredient From Range of Users</h2>
-
-  <!-- Input to select ingredient -->
-
-  <input type="text" id="lowestAuthor" placeholder="Lowest Author">     <!-- Search box -->
-  <input type="text" id="highestAuthor" placeholder="Highest Author">     <!-- Search box -->
-
-  <label for="ingredientSelect">Choose an ingredient:</label>
-  <select id="ingredientSelect">
-    <option value="Garlic">Garlic</option>
-    <option value="Chicken">Chicken</option>
-    <option value="Tomato">Tomato</option>
-  </select>
-  <button onclick="getRecipesByIngredient()">Get Recipes</button>
-
-  <div id="getRecipes" style="display:none;">
-    <h3 id="recipeHeading"></h3>
-    <ul id="recipeResults"></ul>
-  </div>
-
-
-  <!-- Button to trigger the getRecipesByTag function -->
-  <button onclick="getRecipesByTag()">Show Recipes by Tag</button>
-
-  <!-- Section to display the results for recipes -->
-  <div id="getRecipes" style="display:none;">
-      <h3 id="recipeHeading"></h3>
-      <ul id="recipeResults"></ul>
-  </div>
-
-
-  <h2>Find all Recipes with Ingredient Between Author Values</h2>
-
-  <p id="authorMessage"></p>
-
-  <input type="text" id="authorName" placeholder="Author">     <!-- Search box -->
-
-  <button onclick="addNewIngredient()">Add New Ingredient</button>
-  <br>
+    <section id="getUsersSection">
+      <h2>Get all Users</h2>
+      <button class="getUserBtn" onclick="getUsers()">Get Users</button> <!-- Change the onclick to getUsers() -->
+  
+      <div id="getUsers">
+        <div class="getUserResults">
+          <button onclick="hideUserResults()">Hide</button>
+          <ul id="userResults"></ul>
+        </div>
+      </div>
+    </section>
+  
+    <section id="highestScoreSection">
+      <h2>Find Users Who Gave Recipe Highest Score</h2>
+      <input type="text" id="highestRecipeName" placeholder="Recipe Name"> <!-- Search box -->
+      <button onclick="searchHighestRatings()">Search Rating</button>
+  
+      <div id="getUsersRating">
+        <div class="getUserRatingsResults">
+          <button onclick="hideUserRatingResults()">Hide</button>
+          <ul id="userRatingResults"></ul>
+        </div>
+      </div>
+    </section>
+  
+    <section id="insertIngredientSection">
+      <h2>Insert Ingredient</h2>
+      <p id="ingredientMessage"></p>
+      <input type="text" id="foodGroup" placeholder="Food Group"> <!-- Search box -->
+      <input type="text" id="ingredientName" placeholder="Ingredient Name"> <!-- Search box -->
+      <button onclick="addNewIngredient()">Add New Ingredient</button>
+    </section>
+  
+    <section id="deleteAuthorSection">
+      <h2>Delete All Recipes By Author</h2>
+      <p id="authorMessage"></p>
+      <input type="text" id="authorName" placeholder="Author"> <!-- Search box -->
+      <button onclick="deleteRecipesByAuthor()">Delete Recipes</button>
+    </section>
+  
+    <section id="getRecipesByIngredientSection">
+      <h2>Get all Recipes with Ingredient From Range of Users</h2>
+      <input type="text" id="lowestAuthor" placeholder="Lowest Author"> <!-- Search box -->
+      <input type="text" id="highestAuthor" placeholder="Highest Author"> <!-- Search box -->
+  
+      <label for="ingredientSelect">Choose an ingredient:</label>
+      <select id="ingredientSelect">
+        <option value="Garlic">Garlic</option>
+        <option value="Chicken">Chicken</option>
+        <option value="Tomato">Tomato</option>
+      </select>
+      <button onclick="getRecipesByIngredient()">Get Recipes</button>
+  
+      <div id="getRecipes" style="display:none;">
+        <h3 id="recipeHeading"></h3>
+        <ul id="recipeResults"></ul>
+      </div>
+    </section>
+  
+    <section id="showRecipesByTagSection">
+      <button onclick="getRecipesByTag()">Show Recipes by Tag</button>
+  
+      <div id="getRecipes" style="display:none;">
+        <h3 id="recipeHeading"></h3>
+        <ul id="recipeResults"></ul>
+      </div>
+    </section>
+  
+    <section id="recipesWithIngredientSection">
+      <h2>Find all Recipes with Ingredient Between Author Values</h2>
+      <p id="authorMessage"></p>
+      <input type="text" id="authorName" placeholder="Author"> <!-- Search box -->
+      <button onclick="addNewIngredient()">Add New Ingredient</button>
+    </section>
+  </body>
 
 
   </body>
