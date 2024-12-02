@@ -39,8 +39,8 @@
     <section id="insertIngredientSection">
       <h2>Insert Ingredient</h2>
       <p id="ingredientMessage"></p>
-      <input type="text" id="foodGroup" placeholder="Food Group"> <!-- Search box -->
-      <input type="text" id="ingredientName" placeholder="Ingredient Name"> <!-- Search box -->
+      <input type="text" id="foodGroup" placeholder="Food Group"><br> <!-- Search box -->
+      <input type="text" id="ingredientName" placeholder="Ingredient Name"> <br><!-- Search box -->
       <button onclick="addNewIngredient()">Add New Ingredient</button>
     </section>
   
@@ -53,15 +53,15 @@
   
     <section id="getRecipesByIngredientSection">
       <h2>Get all Recipes with Ingredient From Range of Users</h2>
-      <input type="text" id="lowestAuthor" placeholder="Lowest Author"> <!-- Search box -->
-      <input type="text" id="highestAuthor" placeholder="Highest Author"> <!-- Search box -->
+      <input type="text" id="lowestAuthor" placeholder="Lowest Author"><br> <!-- Search box -->
+      <input type="text" id="highestAuthor" placeholder="Highest Author"><br> <!-- Search box -->
   
       <label for="ingredientSelect">Choose an ingredient:</label>
       <select id="ingredientSelect">
         <option value="Garlic">Garlic</option>
         <option value="Chicken">Chicken</option>
         <option value="Tomato">Tomato</option>
-      </select>
+      </select><br>
       <button onclick="getRecipesByIngredient()">Get Recipes</button>
   
       <div id="getRecipes" style="display:none;">
@@ -89,7 +89,7 @@
       <h2>Search Ingredients by Food Group or Name</h2>
       <input type="text" id="ingredientInput" placeholder="Search"> <br><!-- Search box -->
 
-      <label for="ingredientSearchSelect">Choose an type:</label>
+      <label for="ingredientSearchSelect">Choose a type:</label>
       <select id="ingredientSearchSelect">
         <option value="foodGroup">Food Group</option>
         <option value="name">Name</option>

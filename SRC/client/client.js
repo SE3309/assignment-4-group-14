@@ -240,7 +240,7 @@ function getIngredientBySearch(){
         return;
     }
 
-    const selectedTag = document.getElementById("ingredientSelect").value;
+    const selectedTag = document.getElementById("ingredientSearchSelect").value;
     goodSearch = validateSearch(selectedTag);
     if (goodSearch == false){
         return;
@@ -257,10 +257,6 @@ function getIngredientBySearch(){
                 console.log(data);
 
                 displayIngredient(data);
-
-                let ele = document.getElementById("authorMessage");
-
-                ele.innerText = data.message;
             })       //Calling to display all of the lists
             .catch(err => console.log('Failed to get json object'))
         }
@@ -283,7 +279,7 @@ function displayIngredient(ingredients){
     resultArea.innerHTML = '';
 
 
-    for (var i= 0; i < users.length; i++){        //Ading all of the results to the current html
+    for (var i= 0; i < ingredients.length; i++){        //Ading all of the results to the current html
         var listItem = document.createElement("li");
 
         listItem.innerHTML = `<p>${ingredients[i].name} ${ingredients[i].foodGroup} </p>`;

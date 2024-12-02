@@ -172,6 +172,8 @@ router.get('/search-ingredients/:column/:input', (req, res) => {//where column i
     const input = req.params.input;
     const column = req.params.column;
 
+    console.log(input, column)
+
     const query = `SELECT * FROM ingredients WHERE ${column} LIKE '%${input}%'`
 
     con.query(query, (err,results) => {
