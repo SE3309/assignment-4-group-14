@@ -197,6 +197,28 @@ function deleteRecipesByAuthor(){
         return;
     }
 
+    fetch(`/api/get-highest-rated-users/${authorName}`, {
+        method: 'DELETE',
+        headers: {'Content-type': 'application/json'}
+    })
+    .then(res => {
+        if (res.ok) {
+            res.json()
+            .then(data => {
+                console.log(data);
+
+                let ele = document.getElementById("authorMessage");
+
+                ele.innerText = data;
+            })       //Calling to display all of the lists
+            .catch(err => console.log('Failed to get json object'))
+        }
+        else {
+            console.log('Error: ', res.status)
+        }        
+    })
+    .catch();
+
 }
 
 

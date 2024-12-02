@@ -4,8 +4,8 @@ var mysql = require('mysql2');
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "monthdayyear1Y",
-  database: "recipe_app"
+  password: "IWillFollowYouIntoTheDark!",
+  database: "assignment3"
 });
 
 con.connect(function(err) {
@@ -101,9 +101,10 @@ router.get('/getRecipesByIngredientNameAndUserRange/:ingredientName/:startUser/:
     const { ingredientName, startUser, endUser } = req.params;
 
     const query = `
-        SELECT a.recipeID
+        SELECT r.name AS recipeName
         FROM recipeIngredients ri
         JOIN author a ON a.recipeID = ri.recipeID
+        JOIN recipes r ON r.recipeID = a.recipeID
         WHERE ri.ingredientID = (
             SELECT ingredientID 
             FROM ingredients 
@@ -138,6 +139,29 @@ router.get('/search-ingredients/:column/:input', (req, res) => {//where column i
     });
 });
 
+
+router.delete('/deleteRecipesByUser/:username', (req, res) => {
+    const { username } = req.params;
+
+    // Query to delete all recipes based on the given username
+    const query = `
+        DELETE FROM recipes
+        WHERE recipeID IN (
+            SELECT recipeID FROM author WHERE username = ?
+        );
+    `;
+
+    con.query(query, [username], (error, results) => {
+        if (error) {
+            console.error('Failed to delete recipes by user:', error);
+            res.status(500).json({ error: 'Failed to delete recipes by user' });
+        } else if (results.affectedRows === 0) {
+            res.status(404).json({ message: `No recipes found by user: ${username}` });
+        } else {
+            res.status(200).json({ message: `Sucess, deleted all recipes by user: ${username}` });
+        }
+    });
+});
 
 
 
