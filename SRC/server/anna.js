@@ -165,11 +165,6 @@ router.get('/search-tags/:tag', (req,res) => {
     });
 });
 
-router.get('/search-recipes-by-tag/:tag', (req,res) => {
-
-});
-
-
 app.use('/api', router);
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
