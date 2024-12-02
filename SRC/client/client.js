@@ -176,9 +176,13 @@ function displayRatingUsers(users){
     }
 }
 
+function hideUserRatingResults(){
+    x = document.getElementById('getUsersRating');      //Showing the div area
+    x.style.display = 'none';
 
-
-
+    x = document.getElementById("userRatingResults");
+    x.innerHTML= '';
+}
 
 
 
@@ -202,30 +206,6 @@ function deleteRecipesByAuthor(){
 
 
 
-
-// Fake data
-const recipes = [ 
-    { recipeID: 1, name: "Spaghetti Bolognese" },
-    { recipeID: 2, name: "Chicken Curry" },
-    { recipeID: 3, name: "Vegetable Stir Fry" },
-    { recipeID: 4, name: "Beef Stew" }
-];
-
-const ingredients = [
-    { recipeID: 1, ingredient: "Garlic" },
-    { recipeID: 2, ingredient: "Chicken" },
-    { recipeID: 2, ingredient: "Garlic" },
-    { recipeID: 3, ingredient: "Tomato" },
-    { recipeID: 4, ingredient: "Beef" }
-];
-
-const authors = [
-    { username: "user_10", recipeID: 1 },
-    { username: "user_11", recipeID: 2 },
-    { username: "user_12", recipeID: 2 },
-    { username: "user_25", recipeID: 3 },
-    { username: "user_30", recipeID: 4 }
-];
 
 // Function to fetch recipes by tag
 function getRecipesByTag() {
@@ -309,3 +289,7 @@ function displayRecipes(recipes, criterion, type) {
     document.getElementById('getRecipes').style.display = 'block';
 }
 
+function hideRecipesByIngredient(){
+    x = document.getElementById('recipesByIngredient');      //Showing the div area
+    x.style.display = 'none';
+}

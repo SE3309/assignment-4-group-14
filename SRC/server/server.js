@@ -67,15 +67,18 @@ app.get('/api/getRecipesByTag/:tag', (req, res) => {
 });
 
 
-//API endpoint for getting recipes by ingredient's name and user range
+
 //THIS IS UPDATED QUERY THE ORIGINAL ONE WAS INCORRECT
+// API endpoint for getting recipes by ingredient's name and user range
+//returns recipe name inputs are ingredient name and user range
 app.get('/api/getRecipesByIngredientNameAndUserRange/:ingredientName/:startUser/:endUser', (req, res) => {
     const { ingredientName, startUser, endUser } = req.params;
 
     const query = `
-        SELECT a.recipeID
+        SELECT r.name AS recipeName
         FROM recipeIngredients ri
         JOIN author a ON a.recipeID = ri.recipeID
+        JOIN recipes r ON r.recipeID = a.recipeID
         WHERE ri.ingredientID = (
             SELECT ingredientID 
             FROM ingredients 
