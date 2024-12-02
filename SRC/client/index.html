@@ -70,6 +70,12 @@
       </div>
     </section>
   
+    <section id="recipesWithIngredientSection">
+      <h2>Recipes with Tag Selection</h2>
+      <p id="authorMessage"></p>
+      <input type="text" id="tagName" placeholder="Tag Name"> <!-- Search box -->
+    </section>
+
     <section id="showRecipesByTagSection">
       <button onclick="getRecipesByTag()">Show Recipes by Tag</button>
   
@@ -77,13 +83,6 @@
         <h3 id="recipeHeading"></h3>
         <ul id="recipeResults"></ul>
       </div>
-    </section>
-  
-    <section id="recipesWithIngredientSection">
-      <h2>Find all Recipes with Ingredient Between Author Values</h2>
-      <p id="authorMessage"></p>
-      <input type="text" id="authorName" placeholder="Author"> <!-- Search box -->
-      <button onclick="addNewIngredient()">Add New Ingredient</button>
     </section>
   </body>
 
