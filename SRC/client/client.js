@@ -209,7 +209,18 @@ function deleteRecipesByAuthor(){
 
                 let ele = document.getElementById("authorMessage");
 
-                ele.innerText = data;
+                ele.innerText = data.message;
+            })       //Calling to display all of the lists
+            .catch(err => console.log('Failed to get json object'))
+        }
+        else if (res.status == 404){
+            res.json()
+            .then(data => {
+                console.log(data);
+
+                let ele = document.getElementById("authorMessage");
+
+                ele.innerText = data.message;
             })       //Calling to display all of the lists
             .catch(err => console.log('Failed to get json object'))
         }
