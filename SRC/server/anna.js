@@ -65,7 +65,7 @@ router.get('/get-highest-rated-users/:recipeName', (req,res) => {
         WHERE rt.recipeID = (
             SELECT recipeID 
             FROM recipes 
-            WHERE name = ?
+            WHERE name LIKE ?
         )
         AND rating = 5
     `;
@@ -134,7 +134,20 @@ router.get('/search-ingredients/:column/:input', (req, res) => {//where column i
             console.error('Error executing query: ', err);
             return res.status(500).json({ error: 'Database query error' });
         }
-        console.log('search query works');
+        res.status(200).json(results);
+    });
+});
+
+router.get('/search-recipes/:recipeName', (req,res) => {
+    const recipeName = req.params.recipeName;
+
+    const query = `SELECT * FROM recipes WHERE name LIKE '%${recipeName}%'`;
+
+    con.query(query, (err,results) => {
+        if (err) {
+            console.error('Error executing query: ',err);
+            return res.status(500).json({ error: 'Database query error' });
+        }
         res.status(200).json(results);
     });
 });
